@@ -17,7 +17,7 @@ from keras.layers import Input, Embedding, GRU, TimeDistributed, Dense
 
 #load data
 df = pd.read_csv("yelp_2013.csv")
-df = df.sample(5000)
+#df = df.sample(5000)
 
 Y = df.stars.values-1
 Y = to_categorical(Y,num_classes=5)
