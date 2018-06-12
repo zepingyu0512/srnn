@@ -1,9 +1,10 @@
 '''
-author: Zeping Yu
+Author: Zeping Yu
 Sliced Recurrent Neural Network (SRNN). 
 SRNN is able to get much faster speed than standard RNN by slicing the sequences into many subsequences.
 This work is accepted by COLING 2018.
 The code is written in keras, using tensorflow backend. We implement the SRNN(8,2) here, and Yelp 2013 dataset is used.
+If you have any question, please contact me at zepingyu@foxmail.com.
 '''
 
 import pandas as pd
