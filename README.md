@@ -1,9 +1,10 @@
 # SRNN
-author: Zeping Yu  <br />
+Author: Zeping Yu  <br />
 This work is accepted by COLING 2018.  <br />
 Sliced Recurrent Neural Network (SRNN).  <br />
 SRNN is able to get much faster speed than standard RNN by slicing the sequences into many subsequences.  <br />
 The code is written in keras, using tensorflow backend. We implement the SRNN(8,2) here, and Yelp 2013 dataset is used.  <br />
+If you have any question, please contact me at zepingyu@foxmail.com. <br />
 <br />
 The pre-trained GloVe word embeddings could be downloaded at:  <br /> 
 https://nlp.stanford.edu/projects/glove/ <br />
