@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''
 Author: Zeping Yu
 Sliced Recurrent Neural Network (SRNN). 
