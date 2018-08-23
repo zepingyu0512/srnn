@@ -162,7 +162,7 @@ callbacks=[checkpoint]
              
 model.fit(np.array(x_train_padded_seqs_split), y_train, 
           validation_data = (np.array(x_val_padded_seqs_split), y_val),
-          nb_epoch = EPOCHS, 
+          epochs = EPOCHS,
           batch_size = Batch_size,
           callbacks = callbacks,
           verbose = 1)
