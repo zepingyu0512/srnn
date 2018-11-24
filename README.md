@@ -18,3 +18,5 @@ https://figshare.com/articles/Untitled_Item/6292253  <br />
 https://figshare.com/articles/Yelp_2015/6292334  <br />
 <br />
 Yelp_P, Amazon_P and Amazon_F datasets are at: https://drive.google.com/drive/folders/0Bz8a_Dbh9Qhbfll6bVpmNUtUcFdjYmF2SEpmZUZUcVNiMUw1TWN6RDV3a0JHT3kxLVhVR2M  <br />
+
+Here is an interesting modification of SRNN for text generation, similar to language model: https://github.com/whackashoe/srnn/tree/text-generation
