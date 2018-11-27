@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 '''
 Author: Zeping Yu
 Sliced Recurrent Neural Network (SRNN). 
@@ -93,9 +94,10 @@ for i in range(x_train_padded_seqs.shape[0]):
         s=np.split(split1[j],8)
         a.append(s)
     x_train_padded_seqs_split.append(a)
+print('x_train_padded_seqs_split done')
 
 #load pre-trained GloVe word embeddings
-print "Using GloVe embeddings"
+print("Using GloVe embeddings")
 glove_path = 'glove.6B.200d.txt'
 embeddings_index = {}
 f = open(glove_path)
@@ -119,30 +121,30 @@ for word, i in vocab.items():
 embedding_layer = Embedding(MAX_NUM_WORDS + 1,
                             EMBEDDING_DIM,
                             weights=[embedding_matrix],
-                            input_length=MAX_LEN/64,
+                            input_length=MAX_LEN//64,
                             trainable=True)
 
 #build model
-print "Build Model"
-input1 = Input(shape=(MAX_LEN/64,), dtype='int32')
+print("Build Model")
+input1 = Input(shape=(MAX_LEN//64,), dtype='int32')
 embed = embedding_layer(input1)
 gru1 = GRU(NUM_FILTERS,recurrent_activation='sigmoid',activation=None,return_sequences=False)(embed)
 Encoder1 = Model(input1, gru1)
 
-input2 = Input(shape=(8,MAX_LEN/64,), dtype='int32')
+input2 = Input(shape=(8,MAX_LEN//64,), dtype='int32')
 embed2 = TimeDistributed(Encoder1)(input2)
 gru2 = GRU(NUM_FILTERS,recurrent_activation='sigmoid',activation=None,return_sequences=False)(embed2)
 Encoder2 = Model(input2,gru2)
 
-input3 = Input(shape=(8,8,MAX_LEN/64), dtype='int32')
+input3 = Input(shape=(8,8,MAX_LEN//64), dtype='int32')
 embed3 = TimeDistributed(Encoder2)(input3)
 gru3 = GRU(NUM_FILTERS,recurrent_activation='sigmoid',activation=None,return_sequences=False)(embed3)
 preds = Dense(5, activation='softmax')(gru3)
 model = Model(input3, preds)
 
-print Encoder1.summary()
-print Encoder2.summary()
-print model.summary()
+print(Encoder1.summary())
+print(Encoder2.summary())
+print(model.summary())
 
 #use adam optimizer
 from keras.optimizers import Adam
@@ -160,7 +162,7 @@ callbacks=[checkpoint]
              
 model.fit(np.array(x_train_padded_seqs_split), y_train, 
           validation_data = (np.array(x_val_padded_seqs_split), y_val),
-          nb_epoch = EPOCHS, 
+          epochs = EPOCHS,
           batch_size = Batch_size,
           callbacks = callbacks,
           verbose = 1)
@@ -168,4 +170,4 @@ model.fit(np.array(x_train_padded_seqs_split), y_train,
 #use the best model to evaluate on test set
 from keras.models import load_model
 best_model= load_model(savebestmodel)          
-print best_model.evaluate(np.array(x_test_padded_seqs_split),y_test,batch_size=Batch_size)
+print(best_model.evaluate(np.array(x_test_padded_seqs_split),y_test,batch_size=Batch_size))
